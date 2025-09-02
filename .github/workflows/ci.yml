@@ -4,9 +4,25 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  continuous-run:
     runs-on: ubuntu-latest
+    timeout-minutes: 360  # 6 saat maksimum
+    
     steps:
       - uses: actions/checkout@v3
-      - name: Your build steps
-        run: echo "Workflow triggered via API!"
+      
+      - name: Continuous Running Task
+        run: |
+          echo "🚀 Workflow started at $(date)"
+          
+          # Sonsuz döngü - 6 saat sonra GitHub otomatik durdurur
+          while true; do
+            echo "⏰ Running... Current time: $(date)"
+            echo "📝 Workflow triggered via API!"
+            
+            # İsterseniz burada işlemler yapabilirsiniz
+            # Örnek: API çağrısı, dosya kontrolü vs.
+            
+            # 30 saniye bekle
+            sleep 30
+          done
